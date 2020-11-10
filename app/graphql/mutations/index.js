@@ -145,3 +145,23 @@ export const FORGOT_PASSWORD = gql`
     }
   }
 `;
+
+export const PARTNER_LOGIN = gql`
+  mutation partnerLogin($email: String!, $password: String!){
+    partnerLogin(input:{
+      email: $email,
+      password: $password
+    }){
+      jwt
+      user{
+        id
+        username
+        email
+        mobile_number
+        center{
+          id
+        }
+      }
+    }
+  }
+`;

@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useContext } from 'react';
 import { ScrollView, RefreshControl, InteractionManager } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useQuery } from '@apollo/client';
@@ -7,22 +7,27 @@ import SafeView from 'components/safeView';
 import Box from 'components/box';
 import Heading from 'components/heading';
 import TopSection from './topSection';
-import TopCenters from './topCenters';
-import RecentUsers from './recentUsers';
-import { GET_HOME } from 'graphql/queries';
+import Services from './services';
+import RecentCheckIns from './recentCheckIns';
+import { GET_HOME, CENTER_HOME_DATA } from 'graphql/queries';
 import MembershipBox from './membershipBox';
 import styles from './styles';
+import { UserDataContext } from 'context';
 
 export default function Home({ navigation }) {
-  const { data, loading, refetch } = useQuery(GET_HOME);
+  const { userData } = useContext(UserDataContext);
+  const { data, loading, refetch } = useQuery(CENTER_HOME_DATA, {
+    variables: {
+      center_id: Number(userData?.center_id)
+    }
+  });
+
+  const counts = data?.getCenterHomeData?.counts;
   const [reloading, setReloading] = useState(false);
   const { t } = useTranslation();
-  let counts = {
-    centersCount: data?.centersCount?.aggregate?.totalCount,
-    offersCount: data?.offersCount?.aggregate?.totalCount,
-  };
 
-  let topCenters = data?.topCenters || [];
+  let topServices = data?.getCenterHomeData?.offers || [];
+  let recentUsers = data?.getCenterHomeData?.recentUsers || [];
 
   const _refetch = useCallback(() => {
     const task = InteractionManager.runAfterInteractions(async () => {
@@ -49,12 +54,12 @@ export default function Home({ navigation }) {
           <TopSection data={counts} />
           <MembershipBox data={counts} />
           <Box padding={10} paddingBottom={0}>
-            <Heading marginBottom={10}>{t('top_offers')}</Heading>
-            <TopCenters data={topCenters} />
+            <Heading marginBottom={10}>{t('top_services')}</Heading>
+            <Services data={topServices} />
           </Box>
           <Box padding={10} paddingBottom={0}>
             <Heading marginBottom={10}>{t('recent_users')}</Heading>
-            <RecentUsers data={topCenters} />
+            <RecentCheckIns data={recentUsers} />
           </Box>
         </ScrollView>
       </SafeView>

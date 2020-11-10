@@ -1,4 +1,4 @@
-import { PROFILE_TAB_SCREEN, MEMBERSHIP_TAB_SCREEN, FAVOURITES_TAB_SCREEN, HOME_TAB_SCREEN, SCAN_TAB_SCREEN } from "navigation/routes";
+import { PROFILE_TAB_SCREEN, HOME_TAB_SCREEN, SCAN_TAB_SCREEN, CHECK_INS_TAB_SCREEN, OFFERS_TAB_SCREEN } from "navigation/routes";
 
 export default function getIconName(routeName) {
   switch (routeName) {
@@ -6,10 +6,10 @@ export default function getIconName(routeName) {
       return 'home';
     case PROFILE_TAB_SCREEN:
       return 'user';
-    case MEMBERSHIP_TAB_SCREEN:
-      return 'id-card';
-    case FAVOURITES_TAB_SCREEN:
-      return 'heart';
+    case CHECK_INS_TAB_SCREEN:
+      return 'clipboard-check';
+    case OFFERS_TAB_SCREEN:
+      return 'percentage';
     case SCAN_TAB_SCREEN:
       return 'qrcode';
     default:

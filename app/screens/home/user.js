@@ -37,7 +37,7 @@ function User({ data }) {
             {'User Name'}
           </Text>
           <Text style={styles.caption} numberOfLines={1}>
-            {'emailaddress@gmail.com'}
+            {new Date().toISOString()}
           </Text>
         </Box>
         <VHCenter>

@@ -1,13 +1,13 @@
 import React from 'react';
 import { View } from 'react-native';
 
-import Center from './center';
+import Service from './service';
 
-export default function TopCenters({ data }) {
+export default function Services({ data }) {
   return (
     <View>
       {data.map((item, index) => (
-        <Center data={item} key={index} />
+        <Service data={item} key={index} />
       ))}
     </View>
   );

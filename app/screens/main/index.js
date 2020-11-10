@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
 import { useApolloClient } from '@apollo/client';
 import Constants from 'expo-constants';
@@ -7,9 +7,11 @@ import { BASIC_INFORMATION } from 'graphql/queries';
 import { NEW_UPDATE } from 'navigation/routes';
 import Loader from 'components/loader';
 import { Platform } from 'react-native';
+import { UserDataContext } from 'context';
 
 export default function Main({ navigation }) {
   const client = useApolloClient();
+  const { setUserData } = useContext(UserDataContext);
 
   useEffect(() => {
     checkNewVersion();
@@ -40,8 +42,17 @@ export default function Main({ navigation }) {
 
   const checkUser = async () => {
     try {
+      const jwt = await AsyncStorage.getItem('@xzero_jwt');
       const userData = await AsyncStorage.getItem('@xzero_user');
+
       if (userData !== null && userData !== '') {
+        let loginData = JSON.parse(userData);
+        setUserData({
+          jwt: JSON.parse(jwt),
+          center_id: loginData?.center?.id,
+          id: loginData?.id,
+          email: loginData?.email
+        });
         navigation.replace('Home');
         return;
       }

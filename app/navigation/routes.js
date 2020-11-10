@@ -16,13 +16,14 @@ export const GIFTS = 'Gifts';
 export const VOUCHERS = 'Vouchers';
 export const NEW_UPDATE = 'NewUpdate';
 export const MEMBERSHIP = 'Member';
+export const USER_CHECKIN = 'UserCheckIn';
 
 // Tab Routes
 export const HOME_TAB_SCREEN = 'Home';
-export const FAVOURITES_TAB_SCREEN = 'Favourites';
-export const MEMBERSHIP_TAB_SCREEN = 'Member';
-export const PROFILE_TAB_SCREEN = 'Profile';
+export const OFFERS_TAB_SCREEN = 'Offers';
 export const SCAN_TAB_SCREEN = 'Scan';
+export const CHECK_INS_TAB_SCREEN = 'CheckIns';
+export const PROFILE_TAB_SCREEN = 'Profile';
 
 // Drawer
 export const DRAWER_HOME = 'Home';

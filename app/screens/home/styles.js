@@ -40,6 +40,11 @@ const styles = StyleSheet.create({
     ...w100px,
     ...whiteBg,
   },
+  serviceImage: {
+    width: 70,
+    height: 70,
+    ...resizeModeContain
+  },
   userImage: {
     height: 60,
     width: 60,
@@ -52,6 +57,7 @@ const styles = StyleSheet.create({
   },
   caption: {
     ...textLite,
+    ...marginTop5
   },
   chipContainer: {
     ...marginTop5,

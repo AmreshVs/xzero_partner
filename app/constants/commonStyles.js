@@ -291,6 +291,10 @@ export const paddingVertical18 = {
   paddingVertical: 18
 }
 
+export const paddingVertical10 = {
+  paddingVertical: 10
+}
+
 export const paddingHorizontal10 = {
   paddingHorizontal: 10
 }

@@ -7,7 +7,7 @@ import MembershipCard from './membershipCard';
 // import { GET_MEMBERSHIP_BY_USER } from 'graphql/queries';
 import IsLoggedIn from 'hoc/isLoggedIn';
 import TopStatusBar from 'components/topStatusBar';
-import GetHelp from './getHelp';
+import Offers from './offers';
 import styles from './styles';
 
 const Membership = () => {
@@ -20,20 +20,12 @@ const Membership = () => {
   return (
     <SafeView noBottom loading={false}>
       <TopStatusBar />
-      <ScrollView
-        style={styles.rootContainer}
-        showsVerticalScrollIndicator={false}
-        // refreshControl={<RefreshControl refreshing={reloading} onRefresh={reload} />}
-        showsVerticalScrollIndicator={false}
-        removeClippedSubviews={true}
-      >
-        <MembershipCard
-          member={member}
-          data={memberData}
-          expired={false}
-        />
-        <GetHelp />
-      </ScrollView>
+      <MembershipCard
+        member={member}
+        data={memberData}
+        expired={false}
+      />
+      <Offers />
     </SafeView>
   );
 };

@@ -4,7 +4,7 @@ import { View } from 'react-native';
 import User from './user';
 import styles from './styles';
 
-export default function RecentUsers({ data }) {
+export default function RecentCheckIns({ data }) {
   return (
     <View style={styles.usersContainer}>
       {data.map((item, index) => (

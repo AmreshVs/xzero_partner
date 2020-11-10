@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -13,7 +13,6 @@ import Home from 'screens/home';
 import Centers from 'screens/centers';
 import Offers from 'screens/offers';
 import OfferDetail from 'screens/offerDetail';
-import Favourites from 'screens/favourites';
 import Membership from 'screens/membership';
 import User from 'screens/user';
 import Payment from 'screens/payment';
@@ -24,8 +23,6 @@ import {
   CENTERS_SCREEN,
   MAIN_SCREEN,
   HOME_TAB_SCREEN,
-  FAVOURITES_TAB_SCREEN,
-  MEMBERSHIP_TAB_SCREEN,
   PROFILE_TAB_SCREEN,
   OFFERS_SCREEN,
   OFFER_DETAIL,
@@ -44,6 +41,8 @@ import {
   NEW_UPDATE,
   SCAN_TAB_SCREEN,
   MEMBERSHIP,
+  USER_CHECKIN,
+  CHECK_INS_TAB_SCREEN,
 } from './routes';
 import Notifications from 'screens/notifications';
 import PaymentStatus from 'screens/paymentStatus';
@@ -57,6 +56,9 @@ import Gifts from 'screens/gifts';
 import Vouchers from 'screens/vouchers';
 import NewUpdate from 'screens/newUpdate';
 import Scan from 'screens/scan';
+import UserCheckIn from 'screens/userCheckIn';
+import CheckIns from 'screens/checkIns';
+import { UserDataContext } from 'context';
 
 const Tab = createBottomTabNavigator();
 
@@ -64,9 +66,9 @@ function HomeNavigation() {
   return (
     <Tab.Navigator tabBar={(props) => <BottomTab {...props} />}>
       <Tab.Screen name={HOME_TAB_SCREEN} component={Home} />
-      <Tab.Screen name={FAVOURITES_TAB_SCREEN} component={Favourites} />
+      <Tab.Screen name={OFFERS_SCREEN} component={Offers} />
       <Tab.Screen name={SCAN_TAB_SCREEN} component={Scan} />
-      <Tab.Screen name={MEMBERSHIP_TAB_SCREEN} component={Membership} />
+      <Tab.Screen name={CHECK_INS_TAB_SCREEN} component={CheckIns} />
       <Tab.Screen name={PROFILE_TAB_SCREEN} component={User} />
     </Tab.Navigator>
   );
@@ -95,6 +97,7 @@ function StackNavigation() {
       <Stack.Screen name={VOUCHERS} component={Vouchers} />
       <Stack.Screen name={NEW_UPDATE} component={NewUpdate} />
       <Stack.Screen name={MEMBERSHIP} component={Membership} />
+      <Stack.Screen name={USER_CHECKIN} component={UserCheckIn} />
     </Stack.Navigator>
   );
 }
@@ -102,14 +105,19 @@ function StackNavigation() {
 const Drawer = createDrawerNavigator();
 
 function Navigation() {
+
+  const [userData, setUserData] = useState();
+
   return (
     <SafeAreaProvider>
       <NavigationContainer>
-        <Drawer.Navigator initialRouteName={DRAWER_HOME} drawerType="slide">
-          <Drawer.Screen name={DRAWER_HOME} component={StackNavigation} />
-          <Drawer.Screen name={DRAWER_PRIVACY} component={Privacy} />
-          <Drawer.Screen name={DRAWER_TERMS} component={Terms} />
-        </Drawer.Navigator>
+        <UserDataContext.Provider value={{ userData, setUserData }}>
+          <Drawer.Navigator initialRouteName={DRAWER_HOME} drawerType="slide">
+            <Drawer.Screen name={DRAWER_HOME} component={StackNavigation} />
+            <Drawer.Screen name={DRAWER_PRIVACY} component={Privacy} />
+            <Drawer.Screen name={DRAWER_TERMS} component={Terms} />
+          </Drawer.Navigator>
+        </UserDataContext.Provider>
       </NavigationContainer>
     </SafeAreaProvider>
   );

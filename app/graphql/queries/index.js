@@ -247,3 +247,28 @@ export const BASIC_INFORMATION = gql`
     }
   }
 `;
+
+export const CENTER_HOME_DATA = gql`
+  query GetCenterHomeData($center_id: Int!){
+    getCenterHomeData(center_id: $center_id) {
+      counts
+      center {
+        id
+        title_en
+        title_ar
+        place
+        city
+      }
+      offers {
+        featured_img {
+          url
+        }
+        title_en
+        title_ar
+        city
+        place
+        discount
+      }
+    }
+  }
+`;

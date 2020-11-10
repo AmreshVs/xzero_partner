@@ -1,9 +1,7 @@
-import React, { useState, memo } from 'react';
+import React, { memo } from 'react';
 import { Text, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { useApolloClient } from '@apollo/client';
 import { useTranslation } from 'react-i18next';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 
 import Box from 'components/box';
 import Row from 'components/row';
@@ -14,18 +12,12 @@ import Column from 'components/column';
 import RippleFX from 'components/rippleFx';
 import { OFFER_DETAIL } from 'navigation/routes';
 import { getUserData } from 'constants/commonFunctions';
-import addFavourite from './addFavourite';
-import useUserData from 'hooks/useUserData';
 import styles from './styles';
 
-function Offer({ data, favourites }) {
-  const client = useApolloClient();
+function Offer({ data }) {
   const { push } = useNavigation();
   const { t, i18n } = useTranslation();
   const language = i18n.language;
-  const userData = useUserData();
-
-  const [favourite, setFavourite] = useState(data.is_favourite);
 
   const handlePress = async () => {
     const userData = await getUserData();
@@ -37,17 +29,9 @@ function Offer({ data, favourites }) {
     });
   };
 
-  const handleFavourite = async (id) => {
-    setFavourite(!favourite);
-    await addFavourite(client, id);
-    if (favourites) {
-      favourites();
-    }
-  };
-
   return (
     <Row style={styles.offerContainer}>
-      <Box flex={2} style={styles.imgContainer}>
+      <Box flex={1} style={styles.imgContainer}>
         <RippleFX onPress={() => handlePress()}>
           <Image source={{ uri: IMAGE_URL + data?.featured_img?.url }} style={styles.image} />
         </RippleFX>
@@ -75,17 +59,6 @@ function Offer({ data, favourites }) {
             )}
         </RippleFX>
       </Column>
-      <Row flex={1} height="100%" vcenter hcenter>
-        {userData && (
-          <RippleFX style={styles.iconContainer} onPress={() => handleFavourite(data?.id)}>
-            <FontAwesomeIcon
-              icon="heart"
-              size={22}
-              color={favourite ? colors.danger : colors.text_lite}
-            />
-          </RippleFX>
-        )}
-      </Row>
     </Row>
   );
 }

@@ -87,5 +87,9 @@
   "xzero_partner": "Xzero Partner",
   "visits": "Visits",
   "favourites": "Favourites",
-  "recent_users": "Recent Users"
+  "recent_users": "Recent Users",
+  "select_offers": "Select the services from below",
+  "confirm": "Confirm",
+  "top_services": "Top Services",
+  "user_check_ins": "User Check In's"
 }

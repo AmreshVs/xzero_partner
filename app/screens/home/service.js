@@ -15,7 +15,7 @@ import { OFFERS_SCREEN } from 'navigation/routes';
 import styles from './styles';
 import VHCenter from 'components/vhCenter';
 
-function Center({ data }) {
+const Service = ({ data }) => {
   const { push } = useNavigation();
   const { t, i18n } = useTranslation();
   const language = i18n.language;
@@ -28,8 +28,8 @@ function Center({ data }) {
   return (
     <RippleFX style={styles.centerContainer} onPress={() => handlePress(data?.id)}>
       <Row>
-        <VHCenter width="35%">
-          <Image source={{ uri: IMAGE_URL + data.featured_img }} style={styles.centerImage} />
+        <VHCenter width="25%">
+          <Image source={{ uri: IMAGE_URL + data.featured_img.url }} style={styles.serviceImage} />
         </VHCenter>
         <Box padding={10} style={styles.textContainer}>
           <Text style={styles.title} numberOfLines={1}>
@@ -40,11 +40,6 @@ function Center({ data }) {
           </Text>
           <View style={styles.chipContainer}>
             <Column>
-              <Chip
-                title={`${data.offersCount}+ ${t('offers')}`}
-                color={colors.chip_1}
-                marginBottom={5}
-              />
               {data?.discount === 100 ? (
                 <Chip title={t('free')} color={colors.danger} />
               ) : (
@@ -58,4 +53,4 @@ function Center({ data }) {
   );
 }
 
-export default memo(Center);
+export default memo(Service);

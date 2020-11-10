@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import 'react-native-gesture-handler';
 import { LogBox } from 'react-native';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
