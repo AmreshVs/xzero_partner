@@ -76,7 +76,7 @@
   "new_update": "New Update Available",
   "update_now": "Update Now",
   "profile": "Profile",
-  "user_since": "Xzero user since",
+  "user_since": "Xzero Partner user since",
   "fill_birthday": "Please fill your birthday",
   "help_membership": "Need help?",
   "membership_difficulties": "Difficulties with buying membership? We will help you.",
@@ -91,5 +91,14 @@
   "select_offers": "Select the services from below",
   "confirm": "Confirm",
   "top_services": "Top Services",
-  "user_check_ins": "User Check In's"
+  "user_check_ins": "User Check In's",
+  "contact_xzero": "Xzero for any changes to your offer",
+  "availed_offers": "Availed Offers",
+  "offer_name": "Offer Name",
+  "discount_price": "Discount Price",
+  "user_details": "User details",
+  "name": "Name",
+  "mobile_number": "Mobile Number",
+  "email": "Email Address",
+  "checked_on": "Checked In On"
 }

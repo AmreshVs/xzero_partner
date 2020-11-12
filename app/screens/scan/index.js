@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Text, View } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 
@@ -8,10 +8,12 @@ import Button from 'components/button';
 import VHCenter from 'components/vhCenter';
 import { ToastMsg } from 'components/toastMsg';
 import { MEMBERSHIP } from 'navigation/routes';
+import { UserDataContext } from 'context';
 
 export default function Scan({ navigation }) {
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
+  const { userData } = useContext(UserDataContext);
 
   useEffect(() => {
     (async () => {
@@ -21,12 +23,11 @@ export default function Scan({ navigation }) {
   }, []);
 
   const handleBarCodeScanned = ({ data }) => {
-    navigation.push(MEMBERSHIP)
     setScanned(true);
     if (isJSON(data)) {
       let scannedData = JSON.parse(data);
       if (scannedData?.serial) {
-        console.log(scannedData?.serial);
+        navigation.push(MEMBERSHIP, { ...scannedData, center: Number(userData?.center_id) });
       }
       else {
         ToastMsg('Not a valid Membership');

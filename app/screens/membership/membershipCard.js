@@ -10,7 +10,7 @@ import Column from 'components/column';
 import { firstLetterUpper, getFormatedDate } from 'constants/commonFunctions';
 import styles from './styles';
 
-export default function MembershipCard({ member, data, expired }) {
+export default function MembershipCard({ data, expired }) {
   const { t } = useTranslation();
 
   return (
@@ -33,20 +33,20 @@ export default function MembershipCard({ member, data, expired }) {
             <Row spaceBetween>
               <Column>
                 <Text style={styles.cardName}>{t('member_id')}</Text>
-                <Text style={styles.title}>{member ? data?.serial || '' : 'XXXX-XXXX-XXXX'}</Text>
+                <Text style={styles.title}>{data ? data?.serial || '' : 'XXXX-XXXX-XXXX'}</Text>
               </Column>
             </Row>
             <Row spaceBetween>
               <Column>
                 <Text style={styles.cardName}>{t('belongs_to')}</Text>
                 <Text style={styles.title}>
-                  {member ? firstLetterUpper(data?.user?.username) || '' : 'XXXXXXX'}
+                  {data ? firstLetterUpper(data?.user?.username) || '' : 'XXXXXXX'}
                 </Text>
               </Column>
               <Column>
                 <Text style={styles.cardName}>{t('expiry')}</Text>
                 <Text style={styles.title}>
-                  {member ? getFormatedDate(new Date(data?.expiry)) : 'XX/XX/XXXX'}
+                  {data ? getFormatedDate(new Date(data?.expiry)) : 'XX/XX/XXXX'}
                 </Text>
               </Column>
             </Row>

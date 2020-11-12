@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 
 import { getShadowStyle } from 'constants/commonFunctions';
 import { SCREEN_HEIGHT } from 'constants/common';
-import { colorWhite, h100, marginTop10, textBoldDark, textLite, marginTop5, margin10, w100, marginBottom5, textAlignLeft, wh100, padding15, borderRadius10, font18, positionAbsolute, flexSpaceBetween, colorDanger, marginBottom0, paddingHorizontal10, marginHorizontal10, h100px, overflowHidden, w100px } from 'constants/commonStyles';
+import { colorWhite, h100, marginTop10, textBoldDark, textLite, marginTop5, margin10, w100, marginBottom5, textAlignLeft, wh100, padding15, borderRadius10, font18, positionAbsolute, flexSpaceBetween, colorDanger, marginBottom0, paddingHorizontal10, marginHorizontal10, h100px, overflowHidden, w100px, resizeModeContain } from 'constants/commonStyles';
 
 const styles = StyleSheet.create({
   rootContainer: {
@@ -66,11 +66,11 @@ const styles = StyleSheet.create({
   },
   serviceTitle: {
     ...textBoldDark,
-    ...marginBottom5,
   },
   image: {
     width: 70,
-    height: 70
+    height: 70,
+    ...resizeModeContain
   },
   imgContainer: {
     ...h100,

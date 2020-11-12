@@ -1,9 +1,9 @@
 import { StyleSheet } from 'react-native';
 
 import { getShadowStyle } from 'constants/commonFunctions';
-import { SCREEN_WIDTH } from 'constants/common';
+import { SCREEN_HEIGHT, SCREEN_WIDTH } from 'constants/common';
 import colors from 'constants/colors';
-import { flexSpaceBetween, flexRow, borderRadius10, w100, textBoldDark, textLite, whiteBg, alignJustifyCenter, font16, positionAbsolute, colorWhite, font15, fontWeight700, marginBottom10, marginBottom5, marginTop5, borderRadius30, overflowHidden, colorDanger, font20, w50, h50, padding15, resizeModeCover, flex1, h100px, w100px, paddingBottom5, textAlignCenter, alignItemsCenter, paddingHorizontal10, borderRadius15, resizeModeContain, marginTop10 } from 'constants/commonStyles';
+import { flexSpaceBetween, flexRow, borderRadius10, w100, textBoldDark, textLite, whiteBg, alignJustifyCenter, font16, positionAbsolute, colorWhite, font15, fontWeight700, marginBottom10, marginBottom5, marginTop5, borderRadius30, overflowHidden, colorDanger, font20, w50, h50, padding15, resizeModeCover, flex1, h100px, w100px, paddingBottom5, textAlignCenter, alignItemsCenter, paddingHorizontal10, borderRadius15, resizeModeContain, marginTop10, padding10 } from 'constants/commonStyles';
 
 const styles = StyleSheet.create({
   topContainer: {
@@ -32,13 +32,10 @@ const styles = StyleSheet.create({
     ...borderRadius10,
     ...getShadowStyle(),
   },
-  centerImage: {
-    flex: 2,
-    ...resizeModeContain,
-    ...borderRadius15,
-    ...h100px,
-    ...w100px,
+  centerImageContainer: {
     ...whiteBg,
+    ...borderRadius15,
+    ...padding10
   },
   serviceImage: {
     width: 70,
@@ -55,7 +52,7 @@ const styles = StyleSheet.create({
   textContainer: {
     flex: 3,
   },
-  caption: {
+  userCaption: {
     ...textLite,
     ...marginTop5
   },
@@ -71,7 +68,7 @@ const styles = StyleSheet.create({
     ...alignJustifyCenter
   },
   membership: {
-    marginTop: -50,
+    marginTop: -SCREEN_HEIGHT / 10,
     ...paddingBottom5,
   },
   membershipContainer: {

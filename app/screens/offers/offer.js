@@ -11,7 +11,6 @@ import { IMAGE_URL } from 'constants/common';
 import Column from 'components/column';
 import RippleFX from 'components/rippleFx';
 import { OFFER_DETAIL } from 'navigation/routes';
-import { getUserData } from 'constants/commonFunctions';
 import styles from './styles';
 
 function Offer({ data }) {
@@ -20,18 +19,15 @@ function Offer({ data }) {
   const language = i18n.language;
 
   const handlePress = async () => {
-    const userData = await getUserData();
     push(OFFER_DETAIL, {
       offer_id: Number(data.id),
-      id: Number(data.id),
-      user_id: Number(userData?.id) || 0,
-      center: data?.[`title_${language}`],
+      offer_name: data?.[`title_${language}`],
     });
   };
 
   return (
     <Row style={styles.offerContainer}>
-      <Box flex={1} style={styles.imgContainer}>
+      <Box flex={1} width="25%" style={styles.imgContainer}>
         <RippleFX onPress={() => handlePress()}>
           <Image source={{ uri: IMAGE_URL + data?.featured_img?.url }} style={styles.image} />
         </RippleFX>

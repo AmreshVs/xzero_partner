@@ -1,28 +1,27 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Text, FlatList } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import { useApolloClient } from '@apollo/client';
+import { useNavigation } from '@react-navigation/native';
 
 import Row from 'components/row';
 import Card from 'components/card';
 import Button from 'components/button';
-import useUserData from 'hooks/useUserData';
 import Offer from './offer';
 import styles from './styles';
 import Divider from 'components/divider';
+import { CENTER_CHECK_IN } from 'graphql/mutations'
+import { UserDataContext } from 'context';
+import { USER_CHECKIN } from 'navigation/routes';
+import { ToastMsg } from 'components/toastMsg';
+import { ERROR_OCCURED } from 'constants/common';
 
-export default function Offers() {
+export default function Offers({ data, user_id }) {
   const { t } = useTranslation();
-  const userData = useUserData();
+  const { userData } = useContext(UserDataContext);
   const [selected, setSelected] = useState([]);
-
-  const offersData = [
-    { id: "1", name: 'offer title1' },
-    { id: "2", name: 'offer title1' },
-    { id: "3", name: 'offer title1' },
-    { id: "4", name: 'offer title1' },
-    { id: "5", name: 'offer title1' },
-    { id: "6", name: 'offer title1' },
-  ];
+  const client = useApolloClient();
+  const { replace } = useNavigation();
 
   const handleSelectedOffer = (id) => {
     let offersArray = [];
@@ -38,6 +37,28 @@ export default function Offers() {
     }
   }
 
+  const handleConfirm = async () => {
+    try {
+      const { data } = await client.mutate({
+        mutation: CENTER_CHECK_IN,
+        variables: {
+          user_id: Number(user_id),
+          center_id: Number(userData?.center_id),
+          offers: selected.length > 1 ? selected.join(',') : selected
+        }
+      });
+
+      if (data?.Checkin?.transaction_id) {
+        replace(USER_CHECKIN, {
+          transaction_id: data?.Checkin?.transaction_id
+        });
+      }
+    }
+    catch (e) {
+      ToastMsg(ERROR_OCCURED);
+    }
+  }
+
   return (
     <Row style={styles.helpContainer}>
       <Card style={styles.infoContainer}>
@@ -47,7 +68,7 @@ export default function Offers() {
         <Text style={styles.helpCaption}>{t('select_offers')}</Text>
         <FlatList
           keyExtractor={(item, index) => String(index)}
-          data={offersData}
+          data={data}
           renderItem={({ item }) => <Offer data={item} selectedOffers={selected} handleSelectedOffer={handleSelectedOffer} />}
           ItemSeparatorComponent={() => <Divider />}
           contentContainerStyle={styles.flatlist}
@@ -57,10 +78,8 @@ export default function Offers() {
         <Button
           status="success"
           icon="check"
-          disabled={!userData?.username}
-          onPress={() =>
-            console.log('Confirm')
-          }
+          disabled={!selected.length > 0}
+          onPress={() => handleConfirm()}
         >
           {t('confirm')}
         </Button>

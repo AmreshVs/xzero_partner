@@ -4,15 +4,12 @@ import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 
 import colors from 'constants/colors';
-import { openMaps } from 'constants/commonFunctions';
 import Row from 'components/row';
 import Card from 'components/card';
-import RippleFX from 'components/rippleFx';
-import DisabledContainer from 'components/disabledContainer';
 import styles from './styles';
 
-const CenterInfo = ({ offer, username }) => {
-  const { t, i18n } = useTranslation();
+const CenterInfo = ({ offer }) => {
+  const { i18n } = useTranslation();
   const language = i18n.language;
 
   return (
@@ -28,20 +25,6 @@ const CenterInfo = ({ offer, username }) => {
           </Text>
         </Row>
       </Card>
-      <DisabledContainer status={username} borderRadius={10}>
-        <RippleFX
-          onPress={() => openMaps(
-            Number(offer?.latitude),
-            Number(offer?.longitude),
-            offer?.center?.[`title_${language}`]
-          )}
-        >
-          <Card style={styles.mapContainer}>
-            <FontAwesomeIcon icon="map-marked-alt" color={colors.primary} size={35} />
-            <Text style={styles.mapText}>{t('open_map')}</Text>
-          </Card>
-        </RippleFX>
-      </DisabledContainer>
     </Row>
   );
 };

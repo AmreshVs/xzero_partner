@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { FlatList } from 'react-native';
 import { useQuery } from '@apollo/client';
 import { useTranslation } from 'react-i18next';
@@ -9,11 +9,14 @@ import TopNavigator from 'components/topNavigator';
 import Offer from './offer';
 import { OFFERS_LIST } from 'graphql/queries';
 import styles from './styles';
+import { UserDataContext } from 'context';
 
 export default function Offers() {
+  const { userData } = useContext(UserDataContext);
+
   const [reloading, setReloading] = useState(false);
   let { data, loading, refetch } = useQuery(OFFERS_LIST, {
-    variables: { center: 12, user_id: 0 },
+    variables: { center: Number(userData?.center_id), user_id: 0 },
   });
 
   let { t } = useTranslation();
@@ -25,7 +28,7 @@ export default function Offers() {
   };
 
   return (
-    <SafeView style={styles.rootContainer} loading={loading}>
+    <SafeView loading={loading} topNav>
       <TopNavigator title={t('offers')} gradient leftIcon={null} />
       {!data?.offerListWithFavourites.length ? (
         <NoData topNav />

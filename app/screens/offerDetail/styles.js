@@ -48,8 +48,7 @@ const styles = StyleSheet.create({
     ...getShadowStyle(),
   },
   infoContainer: {
-    width: SCREEN_WIDTH / 1.5,
-    height: SCREEN_HEIGHT / 10,
+    ...w100,
   },
   title: {
     ...textBoldDark,
@@ -101,6 +100,9 @@ const styles = StyleSheet.create({
     ...font20,
     ...colorDanger,
   },
+  contactCaption: {
+    ...textLite
+  }
 });
 
 export default styles;

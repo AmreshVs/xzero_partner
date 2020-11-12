@@ -1,31 +1,28 @@
-import React, { useState } from 'react';
-import { ScrollView, RefreshControl } from 'react-native';
-import { useApolloClient } from '@apollo/client';
+import React from 'react';
 
 import SafeView from 'components/safeView';
 import MembershipCard from './membershipCard';
-// import { GET_MEMBERSHIP_BY_USER } from 'graphql/queries';
 import IsLoggedIn from 'hoc/isLoggedIn';
 import TopStatusBar from 'components/topStatusBar';
 import Offers from './offers';
-import styles from './styles';
+import { useRoute } from '@react-navigation/native';
+import { useQuery } from '@apollo/client';
+import { GET_MEMBERSHIP_INFO } from 'graphql/queries';
 
 const Membership = () => {
-  const [member, setMember] = useState(false);
-  const [loading, setLoading] = useState(true);
-  const [reloading, setReloading] = useState(false);
-  const [memberData, setMemberData] = useState([]);
-  // const client = useApolloClient();
+  const { params } = useRoute();
+  const { data, loading } = useQuery(GET_MEMBERSHIP_INFO, {
+    variables: params
+  });
 
   return (
-    <SafeView noBottom loading={false}>
+    <SafeView noBottom loading={loading}>
       <TopStatusBar />
       <MembershipCard
-        member={member}
-        data={memberData}
+        data={data?.getMembershipInfo?.membership}
         expired={false}
       />
-      <Offers />
+      <Offers user_id={data?.getMembershipInfo?.membership?.user?.id} data={data?.getMembershipInfo?.offer} />
     </SafeView>
   );
 };

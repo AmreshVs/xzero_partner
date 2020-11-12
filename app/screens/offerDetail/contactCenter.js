@@ -9,7 +9,7 @@ import Box from 'components/box';
 import { dialNumber } from 'constants/commonFunctions';
 import styles from './styles';
 
-const ContactCenter = ({ username, mobile_number }) => {
+const ContactCenter = ({ username }) => {
   const { t } = useTranslation();
 
   return (
@@ -18,12 +18,15 @@ const ContactCenter = ({ username, mobile_number }) => {
         <Text style={styles.title} numberOfLines={1}>
           {t('contact')}
         </Text>
+        <Text style={styles.contactCaption} numberOfLines={1}>
+          {t('contact_xzero')}
+        </Text>
         <Box marginTop={10}>
           <Button
             status="success"
             icon="phone-alt"
             disabled={!username}
-            onPress={() => dialNumber(mobile_number)}
+            onPress={() => dialNumber('+971565255254')}
           >
             {t('call')}
           </Button>

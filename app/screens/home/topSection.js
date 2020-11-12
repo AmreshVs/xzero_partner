@@ -10,19 +10,17 @@ import colors from 'constants/colors';
 import Box from 'components/box';
 import RippleFX from 'components/rippleFx';
 import Row from 'components/row';
-import useUserData from 'hooks/useUserData';
-import { firstLetterUpper, getUserData } from 'constants/commonFunctions';
+import { getUserData } from 'constants/commonFunctions';
 import AsyncStorage from '@react-native-community/async-storage';
 import styles from './styles';
+import { IMAGE_URL } from 'constants/common';
 
-const TopSection = () => {
-  const { push, toggleDrawer } = useNavigation();
-  const userData = useUserData();
+const TopSection = ({ data }) => {
+
+  const { toggleDrawer } = useNavigation();
 
   const { i18n } = useTranslation();
-
-  let name = userData?.username ?? '';
-  let email = userData?.email ?? '';
+  const language = i18n.language;
 
   const handleLangSelect = async () => {
     let originalLanguage = i18n.language;
@@ -53,9 +51,11 @@ const TopSection = () => {
         <Box>
           <Row hcenter vcenter>
             <View style={styles.textContiner}>
-              <Image source={{ uri: 'https://be.xzero.app/uploads/small_Whats_App_Image_2020_08_09_at_11_05_34_AM_removebg_preview_54174e9e9c.png?2287201.4100000006' }} style={styles.centerImage} />
-              <Text style={styles.centerName}>{firstLetterUpper('center Name')}</Text>
-              <Text style={styles.centerPlace}>{'Burj Khalifa, Dubai'}</Text>
+              <View style={styles.centerImageContainer}>
+                <Image source={{ uri: IMAGE_URL + data?.featured_img?.url }} style={styles.serviceImage} />
+              </View>
+              <Text style={styles.centerName}>{data?.[`title_${language}`]}</Text>
+              <Text style={styles.centerPlace}>{data?.city + ", " + data?.place}</Text>
             </View>
           </Row>
         </Box>

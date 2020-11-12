@@ -1,12 +1,9 @@
 import { StyleSheet } from 'react-native';
 
 import { getShadowStyle } from 'constants/commonFunctions';
-import { padding10, borderRadius10, borderRadius20, marginBottom5, w100, h100, overflowHidden, whiteBg, marginBottom10, textLite, textBoldDark, h100px, w100px, wh100, paddingBottom10 } from 'constants/commonStyles';
+import { padding10, borderRadius10, borderRadius20, marginBottom5, w100, h100, overflowHidden, whiteBg, marginBottom10, textLite, textBoldDark, h100px, w100px } from 'constants/commonStyles';
 
 const styles = StyleSheet.create({
-  rootContainer: {
-    marginBottom: 10
-  },
   flatlist: {
     ...padding10,
   },

@@ -1,12 +1,9 @@
 import { StyleSheet } from 'react-native';
 
 import { getShadowStyle } from 'constants/commonFunctions';
-import { padding10, borderRadius10, borderRadius20, marginBottom5, w100, h100, overflowHidden, whiteBg, marginBottom10, textLite, textBoldDark, h100px, w100px, wh100, paddingBottom10, paddingHorizontal10, flex1, borderRadius15, resizeModeContain } from 'constants/commonStyles';
+import { padding10, borderRadius10, borderRadius20, marginBottom5, w100, h100, overflowHidden, whiteBg, marginBottom10, textLite, textBoldDark, h100px, w100px, wh100, paddingBottom10, paddingHorizontal10, flex1, borderRadius15, resizeModeContain, justifyContentSpaceBetween, flexRow, padding0, paddingVertical10 } from 'constants/commonStyles';
 
 const styles = StyleSheet.create({
-  rootContainer: {
-    marginBottom: 10
-  },
   flatlist: {
     ...padding10,
   },
@@ -20,7 +17,7 @@ const styles = StyleSheet.create({
   },
   title: {
     ...textBoldDark,
-    ...marginBottom5,
+    marginBottom: 1
   },
   image: {
     ...w100px,
@@ -40,29 +37,28 @@ const styles = StyleSheet.create({
     ...borderRadius20,
     ...overflowHidden,
   },
-  chip: {
-    width: 85,
-  },
   caption: {
     ...textLite,
     ...marginBottom5,
   },
   userImage: {
-    height: 80,
-    width: 80,
+    height: 60,
+    width: 60,
     ...resizeModeContain,
     ...borderRadius15,
     ...whiteBg,
   },
   userContainer: {
-    paddingVertical: 5,
+    ...paddingVertical10,
     ...flex1,
     ...marginBottom10,
-    ...whiteBg,
-    ...w100,
-    ...borderRadius10,
-    ...paddingHorizontal10
   },
+  contentContainer: {
+    width: '85%',
+    paddingLeft: 15,
+    ...justifyContentSpaceBetween,
+    ...flexRow
+  }
 });
 
 export default styles;

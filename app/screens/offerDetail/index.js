@@ -20,12 +20,12 @@ import styles from './styles';
 
 export default function OfferDetail() {
   const {
-    params: { id, offer_id, user_id, center },
+    params: { offer_id, offer_name },
   } = useRoute();
   const { data, loading } = useQuery(OFFERS_DETAIL, {
-    variables: { offer_id, id, user_id },
+    variables: { offer_id },
   });
-
+  let center = offer_name;
   const userData = useUserData();
 
   let offer = data?.offer;

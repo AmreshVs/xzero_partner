@@ -35,7 +35,7 @@ export default function Login({ navigation }) {
     });
 
     let loginData = response?.partnerLogin;
-    console.log(errors)
+
     setUserData({
       jwt: loginData?.jwt,
       center_id: loginData?.user?.center?.id,

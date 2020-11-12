@@ -10,7 +10,7 @@ import Box from 'components/box';
 import colors from 'constants/colors';
 import Divider from 'components/divider';
 import { MAIN_SCREEN } from 'navigation/routes';
-import { getUserData, handleDOB } from 'constants/commonFunctions';
+import { getUserData } from 'constants/commonFunctions';
 import RippleFX from 'components/rippleFx';
 import styles from './styles';
 
@@ -75,21 +75,6 @@ export default function ProfileView({ data }) {
           </Box>
           <Box flex={8}>
             <Text style={styles.text}>{data?.email}</Text>
-          </Box>
-        </Row>
-      </Box>
-      <Divider margin={0} marginHorizontal={10} />
-      <Box>
-        <Row vcenter>
-          <Box paddingLeft={20} flex={1}>
-            <FontAwesomeIcon icon="birthday-cake" color={colors.primary} size={23} />
-          </Box>
-          <Box flex={8}>
-            {data?.birthday ? (
-              <Text style={styles.text}>{handleDOB(data?.birthday)}</Text>
-            ) : (
-                <Text style={styles.caption}>{t('fill_birthday')}</Text>
-              )}
           </Box>
         </Row>
       </Box>

@@ -91,5 +91,9 @@
   "select_offers": "",
   "confirm": "",
   "top_services": "",
-  "user_check_ins": ""
+  "user_check_ins": "",
+  "contact_xzero": "",
+  "availed_offers": "",
+  "offer_name": "",
+  "discount_price": ""
 }

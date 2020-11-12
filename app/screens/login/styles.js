@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { wh100, whiteBg, w150, h150, padding20, w100, textLite, textAlignRight, flex, flexRow, justifyContentCenter, alignItemsCenter, flexSpaceBetween, marginLeft5, fontWeight700, positionAbsolute, marginTop20, colorPrimary, padding15, borderRadius10, marginTop10, marginBottom20, marginBottom15, h100 } from 'constants/commonStyles';
+import { wh100, whiteBg, w150, h150, padding20, w100, textLite, textAlignRight, flex, flexRow, justifyContentCenter, alignItemsCenter, flexSpaceBetween, fontWeight700, marginTop20, colorPrimary, marginTop10, marginBottom20, h100 } from 'constants/commonStyles';
 
 const styles = StyleSheet.create({
   container: {

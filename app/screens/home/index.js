@@ -9,12 +9,12 @@ import Heading from 'components/heading';
 import TopSection from './topSection';
 import Services from './services';
 import RecentCheckIns from './recentCheckIns';
-import { GET_HOME, CENTER_HOME_DATA } from 'graphql/queries';
+import { CENTER_HOME_DATA } from 'graphql/queries';
 import MembershipBox from './membershipBox';
 import styles from './styles';
 import { UserDataContext } from 'context';
 
-export default function Home({ navigation }) {
+export default function Home() {
   const { userData } = useContext(UserDataContext);
   const { data, loading, refetch } = useQuery(CENTER_HOME_DATA, {
     variables: {
@@ -26,6 +26,7 @@ export default function Home({ navigation }) {
   const [reloading, setReloading] = useState(false);
   const { t } = useTranslation();
 
+  let center = data?.getCenterHomeData?.center || [];
   let topServices = data?.getCenterHomeData?.offers || [];
   let recentUsers = data?.getCenterHomeData?.recentUsers || [];
 
@@ -51,7 +52,7 @@ export default function Home({ navigation }) {
           showsVerticalScrollIndicator={false}
           removeClippedSubviews={true}
         >
-          <TopSection data={counts} />
+          <TopSection data={center} />
           <MembershipBox data={counts} />
           <Box padding={10} paddingBottom={0}>
             <Heading marginBottom={10}>{t('top_services')}</Heading>

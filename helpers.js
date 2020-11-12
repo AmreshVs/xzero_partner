@@ -36,9 +36,8 @@ export const client = new ApolloClient({
       Query: {
         fields: {
           users: useIncomingData,
-          favouritesByUser: useIncomingData,
           memberships: useIncomingData,
-          notifications: useIncomingData
+          CheckinByTransactionId: useIncomingData
         }
       }
     }

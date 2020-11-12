@@ -5,13 +5,12 @@ import { useTranslation } from 'react-i18next';
 
 import Column from 'components/column';
 import colors from 'constants/colors';
-import { getUserData } from 'constants/commonFunctions';
 import Box from 'components/box';
 import Row from 'components/row';
 import Chip from 'components/chip';
 import RippleFX from 'components/rippleFx';
 import { IMAGE_URL } from 'constants/common';
-import { OFFERS_SCREEN } from 'navigation/routes';
+import { OFFER_DETAIL } from 'navigation/routes';
 import styles from './styles';
 import VHCenter from 'components/vhCenter';
 
@@ -20,16 +19,15 @@ const Service = ({ data }) => {
   const { t, i18n } = useTranslation();
   const language = i18n.language;
 
-  const handlePress = async (id) => {
-    const userData = await getUserData();
-    push(OFFERS_SCREEN, { center: id, user_id: Number(userData?.id) || 0 });
+  const handlePress = async (id, name) => {
+    push(OFFER_DETAIL, { offer_id: id, offer_name: name });
   };
 
   return (
-    <RippleFX style={styles.centerContainer} onPress={() => handlePress(data?.id)}>
+    <RippleFX style={styles.centerContainer} onPress={() => handlePress(data?.id, data?.[`title_${language}`])}>
       <Row>
         <VHCenter width="25%">
-          <Image source={{ uri: IMAGE_URL + data.featured_img.url }} style={styles.serviceImage} />
+          <Image source={{ uri: IMAGE_URL + data?.featured_img?.url }} style={styles.serviceImage} />
         </VHCenter>
         <Box padding={10} style={styles.textContainer}>
           <Text style={styles.title} numberOfLines={1}>
@@ -43,7 +41,7 @@ const Service = ({ data }) => {
               {data?.discount === 100 ? (
                 <Chip title={t('free')} color={colors.danger} />
               ) : (
-                  <Chip title={`${data?.discount}% ${t('discount')}`} color={colors.chip_2} />
+                  <Chip title={`${data?.discount || 0}% ${t('discount')}`} color={colors.chip_2} />
                 )}
             </Column>
           </View>
