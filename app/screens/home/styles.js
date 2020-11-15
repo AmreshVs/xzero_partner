@@ -4,6 +4,7 @@ import { getShadowStyle } from 'constants/commonFunctions';
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from 'constants/common';
 import colors from 'constants/colors';
 import { flexSpaceBetween, flexRow, borderRadius10, w100, textBoldDark, textLite, whiteBg, alignJustifyCenter, font16, positionAbsolute, colorWhite, font15, fontWeight700, marginBottom10, marginBottom5, marginTop5, borderRadius30, overflowHidden, colorDanger, font20, w50, h50, padding15, resizeModeCover, flex1, h100px, w100px, paddingBottom5, textAlignCenter, alignItemsCenter, paddingHorizontal10, borderRadius15, resizeModeContain, marginTop10, padding10 } from 'constants/commonStyles';
+import isIphoneX from 'components/bottomTab/isIphoneX';
 
 const styles = StyleSheet.create({
   topContainer: {
@@ -68,7 +69,7 @@ const styles = StyleSheet.create({
     ...alignJustifyCenter
   },
   membership: {
-    marginTop: -SCREEN_HEIGHT / 10,
+    marginTop: isIphoneX() ? -SCREEN_HEIGHT / 16 : -SCREEN_HEIGHT / 10,
     ...paddingBottom5,
   },
   membershipContainer: {

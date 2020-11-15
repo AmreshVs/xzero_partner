@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { Text, Image, View, KeyboardAvoidingView, ScrollView } from 'react-native';
+import { Text, Image, View, KeyboardAvoidingView } from 'react-native';
 import { Formik } from 'formik';
 import { useApolloClient } from '@apollo/client';
 import { useTranslation } from 'react-i18next';
@@ -85,7 +85,7 @@ export default function Login({ navigation }) {
   return (
     <KeyboardAvoidingView keyboardVerticalOffset={-250} behavior={'position'}>
       <SafeView style={styles.container}>
-        <ScrollView contentContainerStyle={styles.scrollContainer} removeClippedSubviews={true}>
+        <View style={styles.scrollContainer}>
           <Image source={require('../../../assets/logo.png')} style={styles.logo} />
           <HeadingCaption heading={t('welcome')} caption={t('login_note')} />
           <View style={styles.inputsContainer}>
@@ -143,7 +143,7 @@ export default function Login({ navigation }) {
           <Row style={styles.termsContainer}>
             <RenderTerms />
           </Row>
-        </ScrollView>
+        </View>
       </SafeView>
     </KeyboardAvoidingView>
   );
