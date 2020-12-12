@@ -44,7 +44,7 @@ const User = () => {
               <UserCard data={data?.partner} />
             </Row>
           </Box>
-          <Box>
+          <Box style={styles.profileContainer}>
             <ProfileView data={data?.partner} />
           </Box>
         </KeyboardAvoidingView>

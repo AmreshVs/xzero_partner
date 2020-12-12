@@ -15,6 +15,7 @@ import { UserDataContext } from 'context';
 import { USER_CHECKIN } from 'navigation/routes';
 import { ToastMsg } from 'components/toastMsg';
 import { ERROR_OCCURED } from 'constants/common';
+import { isTab } from 'constants/commonFunctions';
 
 export default function Offers({ data, user_id }) {
   const { t } = useTranslation();
@@ -72,17 +73,22 @@ export default function Offers({ data, user_id }) {
           renderItem={({ item }) => <Offer data={item} selectedOffers={selected} handleSelectedOffer={handleSelectedOffer} />}
           ItemSeparatorComponent={() => <Divider />}
           contentContainerStyle={styles.flatlist}
+          columnWrapperStyle={isTab() ? styles.offers : null}
           initialNumToRender={6}
+          numColumns={1}
           removeClippedSubviews={true}
         />
-        <Button
-          status="success"
-          icon="check"
-          disabled={!selected.length > 0}
-          onPress={() => handleConfirm()}
-        >
-          {t('confirm')}
-        </Button>
+        <Row hcenter>
+          <Button
+            status="success"
+            icon="check"
+            width={isTab() ? "40%" : "100%"}
+            disabled={!selected.length > 0}
+            onPress={() => handleConfirm()}
+          >
+            {t('confirm')}
+          </Button>
+        </Row>
       </Card>
     </Row>
   );

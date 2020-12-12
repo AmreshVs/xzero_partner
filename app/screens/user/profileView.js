@@ -52,7 +52,7 @@ export default function ProfileView({ data }) {
   };
 
   return (
-    <>
+    <Box style={styles.profileViewContainer}>
       <Box>
         <Row vcenter>
           <Box paddingLeft={20} flex={1}>
@@ -105,6 +105,6 @@ export default function ProfileView({ data }) {
         </Row>
       </Box>
       <Divider margin={0} marginHorizontal={10} />
-    </>
+    </Box>
   );
 }

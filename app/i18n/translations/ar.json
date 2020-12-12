@@ -95,5 +95,10 @@
   "contact_xzero": "",
   "availed_offers": "",
   "offer_name": "",
-  "discount_price": ""
+  "discount_price": "",
+  "user_details": "",
+  "name": "",
+  "mobile_number": "",
+  "email": "",
+  "checked_on": ""
 }

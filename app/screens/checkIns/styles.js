@@ -1,9 +1,9 @@
 import { StyleSheet } from 'react-native';
 
-import { getShadowStyle } from 'constants/commonFunctions';
+import { getShadowStyle, isTab } from 'constants/commonFunctions';
 import { padding10, borderRadius10, borderRadius20, marginBottom5, w100, h100, overflowHidden, whiteBg, marginBottom10, textLite, textBoldDark, h100px, w100px, wh100, paddingBottom10, paddingHorizontal10, flex1, borderRadius15, resizeModeContain, justifyContentSpaceBetween, flexRow, padding0, paddingVertical10 } from 'constants/commonStyles';
 
-const styles = StyleSheet.create({
+const mobileStyles = StyleSheet.create({
   flatlist: {
     ...padding10,
   },
@@ -60,5 +60,18 @@ const styles = StyleSheet.create({
     ...flexRow
   }
 });
+
+const tabStyles = StyleSheet.create({
+  ...mobileStyles,
+  userContainer: {
+    ...mobileStyles.userContainer,
+    height: 80,
+    width: '49.3%',
+    marginRight: 10,
+    flex: 0
+  }
+});
+
+const styles = isTab() ? tabStyles : mobileStyles;
 
 export default styles;

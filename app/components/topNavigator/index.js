@@ -7,6 +7,7 @@ import { useNavigation } from '@react-navigation/native';
 import RippleFX from 'components/rippleFx';
 import colors from 'constants/colors';
 import isIphoneX from 'components/bottomTab/isIphoneX';
+import { isTab } from 'constants/commonFunctions';
 
 export default function TopNavigator({
   title,
@@ -78,7 +79,7 @@ const styles = StyleSheet.create({
   },
   gradient: {
     width: '100%',
-    height: isIphoneX() ? 98 : 74,
+    height: isTab() ? 70 : Platform.OS === 'ios' ? 97 : 50 + StatusBar.currentHeight,
     position: 'absolute',
     top: 0,
     left: 0,

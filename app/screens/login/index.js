@@ -106,38 +106,38 @@ export default function Login({ navigation }) {
                 isValid,
                 handleSubmit,
               }) => (
-                  <>
-                    <Textbox
-                      placeholder="Email"
-                      icon="at"
-                      value={values.email}
-                      onChangeText={handleChange('email')}
-                      onBlur={() => setFieldTouched('email')}
-                      autoCapitalize="none"
-                    />
-                    <FormError touched={touched.email} errorText={errors.email} />
-                    <Textbox
-                      placeholder="Password"
-                      icon="key"
-                      value={values.password}
-                      onChangeText={handleChange('password')}
-                      onBlur={() => setFieldTouched('password')}
-                      autoCapitalize="none"
-                      secureTextEntry
-                    />
-                    <FormError touched={touched.password} errorText={errors.password} />
-                    <View style={styles.button}>
-                      <Button
-                        icon="sign-in-alt"
-                        onPress={() => handleSubmit()}
-                        disabled={!isValid}
-                        loading={loading}
-                      >
-                        {t('login')}
-                      </Button>
-                    </View>
-                  </>
-                )}
+                <>
+                  <Textbox
+                    placeholder="Email"
+                    icon="at"
+                    value={values.email}
+                    onChangeText={handleChange('email')}
+                    onBlur={() => setFieldTouched('email')}
+                    autoCapitalize="none"
+                  />
+                  <FormError touched={touched.email} errorText={errors.email} />
+                  <Textbox
+                    placeholder="Password"
+                    icon="key"
+                    value={values.password}
+                    onChangeText={handleChange('password')}
+                    onBlur={() => setFieldTouched('password')}
+                    autoCapitalize="none"
+                    secureTextEntry
+                  />
+                  <FormError touched={touched.password} errorText={errors.password} />
+                  <View style={styles.button}>
+                    <Button
+                      icon="sign-in-alt"
+                      onPress={() => handleSubmit()}
+                      disabled={!isValid}
+                      loading={loading}
+                    >
+                      {t('login')}
+                    </Button>
+                  </View>
+                </>
+              )}
             </Formik>
           </View>
           <Row style={styles.termsContainer}>

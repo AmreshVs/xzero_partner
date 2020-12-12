@@ -10,6 +10,7 @@ import User from './user';
 import { USER_CHECK_INS } from 'graphql/queries';
 import styles from './styles';
 import { UserDataContext } from 'context';
+import { isTab } from 'constants/commonFunctions';
 
 export default function CheckIns() {
   const { userData } = useContext(UserDataContext);
@@ -40,6 +41,8 @@ export default function CheckIns() {
             initialNumToRender={6}
             maxToRenderPerBatch={10}
             windowSize={10}
+            numColumns={isTab() ? 2 : 1}
+            columnWrapperStyle={isTab() ? styles.checkins : null}
             contentContainerStyle={styles.flatlist}
             refreshing={reloading}
             onRefresh={reload}

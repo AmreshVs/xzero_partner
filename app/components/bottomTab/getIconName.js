@@ -1,4 +1,4 @@
-import { PROFILE_TAB_SCREEN, HOME_TAB_SCREEN, SCAN_TAB_SCREEN, CHECK_INS_TAB_SCREEN, OFFERS_TAB_SCREEN } from "navigation/routes";
+import { PROFILE_TAB_SCREEN, HOME_TAB_SCREEN, CHECK_INS_TAB_SCREEN, OFFERS_TAB_SCREEN, SCAN_TAB_SCREEN } from "navigation/routes";
 
 export default function getIconName(routeName) {
   switch (routeName) {

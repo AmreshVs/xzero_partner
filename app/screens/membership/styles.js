@@ -1,10 +1,10 @@
 import { StyleSheet } from 'react-native';
 
-import { getShadowStyle } from 'constants/commonFunctions';
+import { getShadowStyle, isTab } from 'constants/commonFunctions';
 import { SCREEN_HEIGHT } from 'constants/common';
 import { colorWhite, h100, marginTop10, textBoldDark, textLite, marginTop5, margin10, w100, marginBottom5, textAlignLeft, wh100, padding15, borderRadius10, font18, positionAbsolute, flexSpaceBetween, colorDanger, marginBottom0, paddingHorizontal10, marginHorizontal10, h100px, overflowHidden, w100px, resizeModeContain } from 'constants/commonStyles';
 
-const styles = StyleSheet.create({
+const mobileStyles = StyleSheet.create({
   rootContainer: {
     ...h100,
   },
@@ -96,6 +96,24 @@ const styles = StyleSheet.create({
   flatlist: {
     paddingBottom: 10
   },
+  scrollView: {
+    height: '100%'
+  }
 });
+
+const tabStyles = StyleSheet.create({
+  ...mobileStyles,
+  memberContainer: {
+    ...mobileStyles.memberContainer,
+    height: SCREEN_HEIGHT / 3.1
+  },
+  image: {
+    ...mobileStyles.image,
+    width: 120,
+    height: 120
+  }
+});
+
+const styles = isTab() ? tabStyles : mobileStyles;
 
 export default styles;

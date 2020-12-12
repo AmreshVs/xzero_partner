@@ -1,12 +1,12 @@
 import { StyleSheet } from 'react-native';
 
-import { getShadowStyle } from 'constants/commonFunctions';
+import { getShadowStyle, isTab } from 'constants/commonFunctions';
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from 'constants/common';
 import colors from 'constants/colors';
 import { flexSpaceBetween, flexRow, borderRadius10, w100, textBoldDark, textLite, whiteBg, alignJustifyCenter, font16, positionAbsolute, colorWhite, font15, fontWeight700, marginBottom10, marginBottom5, marginTop5, borderRadius30, overflowHidden, colorDanger, font20, w50, h50, padding15, resizeModeCover, flex1, h100px, w100px, paddingBottom5, textAlignCenter, alignItemsCenter, paddingHorizontal10, borderRadius15, resizeModeContain, marginTop10, padding10 } from 'constants/commonStyles';
 import isIphoneX from 'components/bottomTab/isIphoneX';
 
-const styles = StyleSheet.create({
+const mobileStyles = StyleSheet.create({
   topContainer: {
     top: -65,
     marginBottom: -65,
@@ -155,5 +155,34 @@ const styles = StyleSheet.create({
     ...paddingHorizontal10
   },
 });
+
+const tabStyles = StyleSheet.create({
+  ...mobileStyles,
+  centerContainer: {
+    ...mobileStyles.centerContainer,
+    width: '49.3%',
+    flex: 0,
+    minHeight: 85,
+    maxHeight: 85
+  },
+  servicesContainer: {
+    flexWrap: 'wrap',
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+  usersContainer: {
+    flexWrap: 'wrap',
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+  userContainer: {
+    ...mobileStyles.userContainer,
+    width: '49.3%',
+    flex: 0,
+    height: 75
+  }
+});
+
+const styles = isTab() ? tabStyles : mobileStyles;
 
 export default styles;

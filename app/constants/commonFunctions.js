@@ -1,5 +1,6 @@
 import { Platform, Linking } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
+import { SCREEN_WIDTH } from './common';
 
 export const getShadowStyle = () => {
   if (Platform.OS === 'ios') {
@@ -97,4 +98,11 @@ export const handleServerDOB = (dobDate) => {
   let year = dobDate.slice(6, 10);
 
   return year + '-' + month + "-" + day;
+}
+
+export const isTab = () => {
+  if (SCREEN_WIDTH > 600) {
+    return true;
+  }
+  return false;
 }

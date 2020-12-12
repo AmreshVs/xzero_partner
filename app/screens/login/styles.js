@@ -1,8 +1,9 @@
 import { StyleSheet } from 'react-native';
 
 import { wh100, whiteBg, w150, h150, padding20, w100, textLite, textAlignRight, flex, flexRow, justifyContentCenter, alignItemsCenter, flexSpaceBetween, fontWeight700, marginTop20, colorPrimary, marginTop10, marginBottom20, h100 } from 'constants/commonStyles';
+import { isTab } from 'constants/commonFunctions';
 
-const styles = StyleSheet.create({
+const mobileStyles = StyleSheet.create({
   container: {
     ...wh100,
     ...whiteBg,
@@ -46,5 +47,15 @@ const styles = StyleSheet.create({
     ...marginTop20
   }
 });
+
+const tabStyles = StyleSheet.create({
+  ...mobileStyles,
+  inputsContainer: {
+    ...mobileStyles.inputsContainer,
+    width: '50%'
+  }
+});
+
+const styles = isTab() ? tabStyles : mobileStyles;
 
 export default styles;
